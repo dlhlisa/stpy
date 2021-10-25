@@ -1,5 +1,3 @@
-# Test
+# Small Tricks learning Python
 
-add a new line here again.
-
-changed here.
+Include general rules, tips, tricks, tools and others that are useful in my learning process.
