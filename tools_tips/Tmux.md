@@ -24,11 +24,13 @@
   - C-b C-<arrow key>: Resize pane in direction of <arrow key>4
   - C-b ,: Rename the current window
   
-#### Compare to Screen
+#### Comparison between Tmux and Screen
 
 Tmux and Screen approximately serves a similar purpose. Both programs build a virtual Terminal inside a single Terminal, allows you to switch among virtual Terminals and let you attach and reattach the virtual Terminals when your network connection is disrupted. Both programs operate by building separate processes which they name differently.
 
 However, there are some differences as well among these two tools. Tmux has a BSD license while the Screen has GNU GPL. Tmux is more user-friendly than the Screen and contains a nice status bar with some info in it. Tmux features automatic window renaming while the Screen lacks this feature. The Screen allows session sharing with other users while Tmux does not. That is the great feature that Tmux lacks.
+  
+[Reference can be found here](https://linuxhint.com/tmux_vs_screen/)
 
 ## [Source code](https://github.com/tmux/tmux)
 
