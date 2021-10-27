@@ -26,7 +26,7 @@
 
 ### [Source code](https://github.com/tmux/tmux)
   
-# [Screen](https://www.gnu.org/software/screen/manual/screen.html
+# [Screen](https://www.gnu.org/software/screen/manual/screen.html)
 
 ## [How To Use Linux Screen](https://linuxize.com/post/how-to-use-linux-screen/)
   
@@ -50,7 +50,6 @@
 - `screen -r ID/named_session` to resume your screen session.
 - `screen` # start new session or `screen -S named_session` to start new named session.
 - **`Ctrl + a` + |**  or **`Ctrl + b` + %** # split panes
-- Ctrl + a + <tab key> switching to a different pane
 
 ## Comparison between Tmux and Screen
 
