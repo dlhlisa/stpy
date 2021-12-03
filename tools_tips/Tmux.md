@@ -13,6 +13,7 @@
 - `exit` or `Ctrl + d` closing panes
 - `C-b c` creating new windows  
 - `C-b p` to switch to the previous window, or `C-b n` to switch to the next window
+-  `Ctrl + b + &` ( & is Shift + 7 ) to kill the current window
 - `C-b d` to detach current session, or `C-b D` give you a choice which of your sessions you want to detach
 - `tmux ls`
 - `tmux attach -t 0` # -t 0 tells wich session to attach to
