@@ -24,6 +24,7 @@
   - C-b z: make a pane go full screen. Hit C-b z again to shrink it back to its previous size
   - C-b C-<arrow key>: Resize pane in direction of <arrow key>4
   - C-b ,: Rename the current window
+- `tmux kill-session -t 3`, kill session 3
 
 ### [Source code](https://github.com/tmux/tmux)
   
