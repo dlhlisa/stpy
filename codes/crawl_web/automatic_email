@@ -49,10 +49,10 @@ task = presenter_df['comments']
 import os
 email_password = os.environ.get('pautoemail_pass')
 email_sender = 'email_address_used_for_sending@gmail.com'
-email_receiver = email_lists[presenter.tolist()[0]]
+email_receiver = email_lists.get(presenter.tolist()[0], email_sender)
 
 subject = 'Please be prepared for the coming lab meeting!'
-body = f'Hi {presenter.tolist()[0]},\n please be prepared for the coming lab meeting on Tuesday! It\'s your {task.tolist()[0]}! \n Thanks and have a nice weekend!\n Best,\n Lihua'
+body = f'Hi {presenter.tolist()[0]},\n\nplease be prepared for the coming lab meeting on Tuesday! It\'s your {task.tolist()[0]}!\n\nThanks and have a nice weekend!\n\nBest,\nLihua'
 
 em = EmailMessage()
 em['From'] = email_sender
