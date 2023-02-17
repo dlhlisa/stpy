@@ -1,4 +1,5 @@
 # Send reminding emails to the person who is presenting in the coming lab meeting. Run this every Friday!
+# Later you can use cron to automatically run this script on linux as scheduled job.
 
 import smtplib
 import ssl
