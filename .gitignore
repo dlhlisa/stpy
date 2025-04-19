@@ -2,7 +2,7 @@
 ## This default template includes entries for R, Python and visual studio
 .env
 .envs
-
+.DS_Store
 
 
 
