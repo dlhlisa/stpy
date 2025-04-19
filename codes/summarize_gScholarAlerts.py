@@ -56,7 +56,7 @@ def fetch_unread_emails(username, password, since_days, label="gScholarAlerts"):
 
         # Search query within the label instead of inbox
         # search_query = f'(UNSEEN FROM "scholaralerts-noreply@google.com" SINCE {since_date})'
-        search_query = f'(ALL FROM "scholaralerts-noreply@google.com" SINCE {since_date})' # change to "UNSEEN" to get all unseen emails
+        search_query = f'(ALL FROM "scholaralerts-noreply@google.com" SINCE {since_date})' # change "ALL" to "UNSEEN" to get all unseen emails
         status, messages = mail.search(None, search_query)
 
         if status != "OK":
@@ -268,7 +268,7 @@ def summarize_publications(username, password, since_days):
 if __name__ == "__main__":
     username = os.getenv("GMAIL_USERNAME")
     password = os.getenv("GMAIL_PASSWORD")
-    since_days = os.getenv("SINCE_DAYS", 7)  # Default to 30 days if not set
+    since_days = os.getenv("SINCE_DAYS", 7)  # Default to 7 days if not set
     if username and password:
         logging.info("Starting to summarize publications...")
         summarize_publications(username, password, since_days)
