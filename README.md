@@ -1,3 +1,7 @@
-# Small Tricks in learning Python/Programming
+# Small Tricks / Reusable Scripts
 
-Include general rules, tips, tricks, tools and others that are useful in my learning process.
+Include general rules, tips, tricks, tools and others for my daily use.
+
+### Copyright
+
+Copyright (c) 2016, Lihua Deng
