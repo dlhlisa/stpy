@@ -33,7 +33,6 @@ Example 3:
 
 """
 
-
 import urllib.request
 import os
 
@@ -45,45 +44,52 @@ def save_file(url, filename=None):
 
     Args:
         url (str): the url for the file you want to save.
-        filename (str): optional, use 'filename' if not specified.  
-    
+        filename (str): optional, use 'filename' if not specified.
+
     Returns:
         file saved in specified directory.
 
     """
     if filename:
-        urllib.request.urlretrieve(url, os.path.join(os.path.dirname(__file__), filename + url.split('.')[-1]))
+        urllib.request.urlretrieve(
+            url, os.path.join(os.path.dirname(__file__), filename + url.split(".")[-1])
+        )
     else:
-        urllib.request.urlretrieve(url, os.path.join(os.path.dirname(__file__), url.split('/')[-1]))
+        urllib.request.urlretrieve(
+            url, os.path.join(os.path.dirname(__file__), url.split("/")[-1])
+        )
 
 
 # example:
 url = "https://docs.scipy.org/doc/scipy/reference/_images/interpolate-3.png"
 
-filename = url.split('/')[-1]
+filename = url.split("/")[-1]
 # print(filename)
 
-datadir = os.path.join(os.path.dirname(__file__), 'data', filename)
+datadir = os.path.join(os.path.dirname(__file__), "data", filename)
 
 urllib.request.urlretrieve(url, datadir)
 
 #######################################################################
 url1 = "https://upload.wikimedia.org/wikipedia/commons/2/20/Google-Logo.svg"
 resource = urllib.request.urlopen(url1)
-output = open(os.path.join(os.path.dirname(__file__), 'data', url1.split('/')[-1]), 'wb')
+output = open(
+    os.path.join(os.path.dirname(__file__), "data", url1.split("/")[-1]), "wb"
+)
 output.write(resource.read())
 output.close()
 
 url2 = "https://www.fu-berlin.de/sites/corporate-design/grundlagen/_medien/fu_logo.png"
 resource = urllib.request.urlopen(url2)
-output = open(os.path.join(os.path.dirname(__file__), 'data', url2.split('/')[-1]), 'wb')
+output = open(
+    os.path.join(os.path.dirname(__file__), "data", url2.split("/")[-1]), "wb"
+)
 output.write(resource.read())
 output.close()
 #######################################################################
 
 
-
-'''
+"""
 def form_filename(i):
     length_i = len(i)
     if length_i == 1:
@@ -101,6 +107,4 @@ for i in range(M, N):
     url = "https://i.guim.co.uk/img/media/7a633730f5f90db3c12f6efc954a2d5b475c3d4a/0_138_5544_3327/master/" + filename
     urllib.request.urlretrieve(url, filename)
 
-'''
-
-
+"""

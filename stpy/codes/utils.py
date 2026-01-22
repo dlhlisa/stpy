@@ -3,11 +3,12 @@ This contains some helper functions.
 
 """
 
-import sys 
+import sys
 import os
-from pathlib import Path 
+from pathlib import Path
+
 PROJECT_ROOT = Path(__file__).resolve().parent
-print(f'Project root directory: {PROJECT_ROOT}')
+print(f"Project root directory: {PROJECT_ROOT}")
 sys.path.append(str(PROJECT_ROOT))
 import pandas as pd
 import numpy as np
@@ -19,7 +20,7 @@ import logging
 
 from rdkit import Chem
 from rdkit.Chem.MolStandardize import rdMolStandardize
-from rdkit.Chem import rdMolDescriptors, MACCSkeys 
+from rdkit.Chem import rdMolDescriptors, MACCSkeys
 from rdkit.Chem import rdFingerprintGenerator
 from rdkit.Chem import Draw
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -41,10 +42,10 @@ def safe_canonicalsmi_from_smiles(smi):
         >>> print(canon_smi)
         COC1=CC=CC=C1O
 
-        >>> a =['COCCCN', 'c1ccccc1OCOC', None, 'C1CCCCC1O', 'C1=CC=CC=C1', 'invalid_smiles'] 
+        >>> a =['COCCCN', 'c1ccccc1OCOC', None, 'C1CCCCC1O', 'C1=CC=CC=C1', 'invalid_smiles']
         >>> df = pd.DataFrame({'smiles': a})
         >>> df['canonical_smi'] = df['smiles'].apply(safe_canonicalsmi_from_smiles)
-        >>> print(df) 
+        >>> print(df)
         smiles canonical_smi
         0          COCCCN        COCCCN
         1    c1ccccc1OCOC  COCOc1ccccc1
@@ -169,7 +170,9 @@ class MoleculeStandardizer:
         after = len(valid_mols)
 
         if after < before:
-            self.logger.info(f"Removed {before - after} molecules during standardization")
+            self.logger.info(
+                f"Removed {before - after} molecules during standardization"
+            )
 
         # Convert Mol → canonical SMILES
         return [Chem.MolToSmiles(m) for m in valid_mols]
@@ -208,6 +211,7 @@ def molecule_standardize(
 # df = pd.DataFrame({ "compound_id": [1, 2, 3], "smiles": [ "CC.[Na+].[Cl-]", "[O-]c1[n+](C)cccc1", "invalid_smiles_here" ] })
 
 # df["std_smiles"] = df["smiles"].apply(lambda s: std.standardize_smiles([s])[0] if Chem.MolFromSmiles(s) else None)
+
 
 # -----------------------------------------------------
 # Calculating fingerprint
@@ -266,7 +270,9 @@ def get_fingerprint(
     # Generator-based fingerprints
     # ----------------------------
     generators = {
-        "morgan": lambda: rdFingerprintGenerator.GetMorganGenerator(radius=radius, fpSize=fpSize),
+        "morgan": lambda: rdFingerprintGenerator.GetMorganGenerator(
+            radius=radius, fpSize=fpSize
+        ),
         "fmorgan": lambda: rdFingerprintGenerator.GetMorganGenerator(
             radius=radius,
             fpSize=fpSize,
@@ -274,7 +280,9 @@ def get_fingerprint(
         ),
         "rdkit": lambda: rdFingerprintGenerator.GetRDKitFPGenerator(fpSize=fpSize),
         "atompair": lambda: rdFingerprintGenerator.GetAtomPairGenerator(fpSize=fpSize),
-        "toptor": lambda: rdFingerprintGenerator.GetTopologicalTorsionGenerator(fpSize=fpSize),
+        "toptor": lambda: rdFingerprintGenerator.GetTopologicalTorsionGenerator(
+            fpSize=fpSize
+        ),
     }
 
     if fp not in generators:
@@ -312,6 +320,7 @@ def get_fingerprints_df(
 
     df[f"{fp}_fp"] = fps
     return df
+
 
 # df = pd.DataFrame({"smiles": ["CCO", "c1ccccc1", "invalid"]})
 # df = get_fingerprints_df(df, smiles_col="smiles", fp="morgan")
@@ -352,6 +361,7 @@ class FingerprintTransformer(BaseEstimator, TransformerMixin):
 # X = df["smiles"]
 # y = [0, 1, 0]
 # pipe.fit(X, y)
+
 
 def concat_fingerprints(
     smiles,
@@ -411,6 +421,7 @@ def concat_fingerprints(
 
     return np.concatenate(fp_list)
 
+
 # vec = concat_fingerprints(
 #     "CCO",
 #     fps=("morgan", "fmorgan", "maccs"),
@@ -456,7 +467,7 @@ def concat_fingerprints_df(
     return df
 
 
-def fp_manipulate(df, fp1, fp2, mani='concat'):
+def fp_manipulate(df, fp1, fp2, mani="concat"):
     """
     Concatenate or sum two fingerprint columns in a DataFrame.
 
@@ -491,22 +502,24 @@ def fp_manipulate(df, fp1, fp2, mani='concat'):
         print(f"Removed {removed} rows due to missing fingerprints in {fp1} or {fp2}.")
 
     # Perform manipulation
-    if mani == 'concat':
-        df[f'{mani}_fp'] = df.apply(
+    if mani == "concat":
+        df[f"{mani}_fp"] = df.apply(
             lambda row: np.concatenate(
-                [np.asarray(row[fp1], dtype=np.uint8),
-                 np.asarray(row[fp2], dtype=np.uint8)]
+                [
+                    np.asarray(row[fp1], dtype=np.uint8),
+                    np.asarray(row[fp2], dtype=np.uint8),
+                ]
             ),
-            axis=1
+            axis=1,
         )
 
-    elif mani == 'sum':
-        df[f'{mani}_fp'] = df.apply(
+    elif mani == "sum":
+        df[f"{mani}_fp"] = df.apply(
             lambda row: (
-                np.asarray(row[fp1], dtype=np.uint8) +
-                np.asarray(row[fp2], dtype=np.uint8)
+                np.asarray(row[fp1], dtype=np.uint8)
+                + np.asarray(row[fp2], dtype=np.uint8)
             ).astype(np.uint8),
-            axis=1
+            axis=1,
         )
 
     else:
@@ -515,11 +528,10 @@ def fp_manipulate(df, fp1, fp2, mani='concat'):
     return df
 
 
-def cas2smiles(cas_number='50-78-2'):
-    """ 
-    """
+def cas2smiles(cas_number="50-78-2"):
+    """ """
     # PubChem PUG-REST API endpoint
-    api_url = f'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{cas_number}/property/CanonicalSMILES/JSON'
+    api_url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{cas_number}/property/CanonicalSMILES/JSON"
 
     # Make the HTTP GET request
     response = requests.get(api_url)
@@ -530,14 +542,11 @@ def cas2smiles(cas_number='50-78-2'):
         data = response.json()
         # Extract the SMILES from the response
         # print(data)
-        smiles = data['PropertyTable']['Properties'][0]['ConnectivitySMILES']
+        smiles = data["PropertyTable"]["Properties"][0]["ConnectivitySMILES"]
         return smiles
     else:
         print(f"Error: {response.status_code}")
         return "NotFound"
 
+
 # df['SMILES'] = df['CASRN'].apply(lambda x: cas2smiles(x))
-
-
-
-
