@@ -3,8 +3,8 @@
 .env
 .envs
 .DS_Store
-
-
+/stpy/*.csv
+*.csv
 
 ##
 ## Add custom entries below here.

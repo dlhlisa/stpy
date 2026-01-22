@@ -1,0 +1,69 @@
+# Send reminding emails to the person who is presenting in the coming lab meeting. Run this every Friday!
+# Later you can use cron to automatically run this script on linux as scheduled job.
+
+import smtplib
+import ssl
+from email.message import EmailMessage
+
+# get the next Tuesday
+import datetime
+current_date = datetime.datetime.today()
+print(current_date)
+
+def next_weekday(d, weekday):
+    days_ahead = weekday - d.weekday()
+    if days_ahead <= 0: # Target day already happened this week
+        days_ahead += 7
+    return d + datetime.timedelta(days_ahead)
+
+#d = datetime.date(2011, 7, 2)
+#d = datetime.datetime.today()
+next_tuesday = next_weekday(current_date, 1) # 0 = Monday, 1=Tuesday, 2=Wednesday...
+print(next_tuesday)
+
+# The lab meeting schedule is documented in a google sheets.
+"""
+date        presenter   comments  
+2023-2-14   A           JC
+2023-2-21   B           project report
+2023-3-7    C           JC
+2023-3-14   A           project report
+2023-3-21   B           JC
+2023-3-28   D           JC
+...
+"""
+
+email_lists = {'A': 'a.name@gmail.cocm', 'B':'b.name@gmail.cocm', 'C':'c.name@gmail.cocm'}
+
+# get the presenter and the task for the next tuesday
+import pandas as pd
+SHEET_ID = 'id_from_google_sheet_link' #'https://docs.google.com/spreadsheets/d/id_from_google_sheet_link/edit#gid=2112982322'
+SHEET_NAME = 'sheet_name'
+url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}'
+df = pd.read_csv(url)
+#print(df.head())
+df['date']= pd.to_datetime(df['date'])
+presenter_df = df[(df['date'] > pd.to_datetime(next_tuesday.date() - datetime.timedelta(days=1))) & (df['date'] <= pd.to_datetime(next_tuesday.date()))]
+presenter = presenter_df['presenter']
+task = presenter_df['comments']
+
+import os
+email_password = os.environ.get('pautoemail_pass')
+email_sender = 'email_address_used_for_sending@gmail.com'
+email_receiver = email_lists.get(presenter.tolist()[0], email_sender)
+
+subject = 'Please be prepared for the coming lab meeting!'
+body = f'Hi {presenter.tolist()[0]},\n\nplease be prepared for the coming lab meeting on Tuesday! It\'s your {task.tolist()[0]}!\n\nThanks and have a nice weekend!\n\nBest,\nLihua'
+
+em = EmailMessage()
+em['From'] = email_sender
+em['To'] = email_receiver
+em['Subject'] = subject
+em.set_content(body)
+
+context = ssl.create_default_context()
+
+with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+    smtp.login(email_sender, email_password)
+    smtp.sendmail(email_sender, email_receiver, em.as_string())
+    print('Reminding email has been sent successfully!')
