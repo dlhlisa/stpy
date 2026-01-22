@@ -5,6 +5,7 @@
 .DS_Store
 /stpy/*.csv
 *.csv
+/stpy/codes/temp.ipynb
 
 ##
 ## Add custom entries below here.
