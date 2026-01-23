@@ -1,5 +1,6 @@
 # Small Tricks / Reusable Scripts
 
+[![codecov](https://codecov.io/github/lihua-notes/stpy/graph/badge.svg?token=IFAUQPJU3U)](https://codecov.io/github/lihua-notes/stpy)
 ![CI](https://github.com/dlhlisa/stpy/actions/workflows/ci.yml/badge.svg)
 
 
