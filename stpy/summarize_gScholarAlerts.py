@@ -19,17 +19,18 @@ It is recommended to use an app password for security reasons if 2FA is enabled 
 
 """
 
-import imaplib
 import email
-import pandas as pd
-from bs4 import BeautifulSoup
+import imaplib
+import logging
 import os
 import re
-import logging
 from datetime import datetime, timedelta
-import requests
-import fitz  # PyMuPDF
 from io import BytesIO
+
+import fitz  # PyMuPDF
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
 # import openpyxl
 
@@ -305,7 +306,7 @@ def summarize_publications(username, password, since_days):
         df = get_more_info(all_publications)
         # Save the DataFrame to CSV and Excel
         df.to_csv(
-            f"publications_summary{since_date}to{datetime.today().strftime("%d-%b-%Y")}.csv",
+            f'publications_summary{since_date}to{datetime.today().strftime("%d-%b-%Y")}.csv',
             index=False,
         )
         logging.info("Summary saved to publications_summary.csv")
