@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 import numpy as np
 from rdkit import Chem
-from stpy.codes.utils import (
+from utils import (
     safe_canonicalsmi_from_smiles,
     MoleculeStandardizer,
     molecule_standardize,
