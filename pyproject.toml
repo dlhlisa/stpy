@@ -39,3 +39,12 @@ source = ["stpy"]
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+select = ["E", "F", "I"]
