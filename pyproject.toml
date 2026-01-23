@@ -20,3 +20,22 @@ dependencies = [
 ]
 [tool.setuptools.packages.find]
 where = ["stpy"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "coverage[toml]",
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov=stpy --cov-report=xml --cov-report=term"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["stpy"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
