@@ -33,8 +33,8 @@ Example 3:
 
 """
 
-import urllib.request
 import os
+import urllib.request
 
 
 def save_file(url, filename=None):

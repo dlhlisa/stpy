@@ -1,18 +1,18 @@
-import pytest
-import pandas as pd
 import numpy as np
+import pandas as pd
+import pytest
 from rdkit import Chem
 from utils import (
-    safe_canonicalsmi_from_smiles,
-    MoleculeStandardizer,
-    molecule_standardize,
-    get_fingerprint,
-    get_fingerprints_df,
     FingerprintTransformer,
+    MoleculeStandardizer,
+    cas2smiles,
     concat_fingerprints,
     concat_fingerprints_df,
     fp_manipulate,
-    cas2smiles,
+    get_fingerprint,
+    get_fingerprints_df,
+    molecule_standardize,
+    safe_canonicalsmi_from_smiles,
 )
 
 

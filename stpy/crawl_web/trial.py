@@ -1,5 +1,5 @@
-import urllib.request
 import os
+import urllib.request
 
 # example:
 # figure out about the path for file saving
@@ -29,8 +29,8 @@ urllib.request.urlretrieve(url, datadir)
 # urllib.request.urlretrieve("https://cofbkufrjwoilfgihmxyke.coursera-apps.org/view/week3/Car%20detection%20for%20Autonomous%20Driving/images/0012.jpg", "localname.jpg")
 # https://cofbkufrjwoilfgihmxyke.coursera-apps.org/files/week3/Car%20detection%20for%20Autonomous%20Driving/images/0012.jpg
 
+
 import requests
-import shutil
 
 url1 = "https://cofbkufrjwoilfgihmxyke.coursera-apps.org/files/week3/Car%20detection%20for%20Autonomous%20Driving/images/0021.jpg"
 r = requests.get(url, allow_redirects=False, stream=True)  # allow_redirects=True,
