@@ -4,25 +4,18 @@ This contains some helper functions.
 """
 
 import sys
-import os
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 print(f"Project root directory: {PROJECT_ROOT}")
 sys.path.append(str(PROJECT_ROOT))
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-import requests
 import logging
 
+import numpy as np
+import requests
 from rdkit import Chem
+from rdkit.Chem import MACCSkeys, rdFingerprintGenerator, rdMolDescriptors
 from rdkit.Chem.MolStandardize import rdMolStandardize
-from rdkit.Chem import rdMolDescriptors, MACCSkeys
-from rdkit.Chem import rdFingerprintGenerator
-from rdkit.Chem import Draw
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
@@ -55,9 +48,11 @@ def safe_canonicalsmi_from_smiles(smi):
         5  invalid_smiles          None
     """
     try:
-        canonical_smi = Chem.MolToSmiles(Chem.MolFromSmiles(smi))
-        return canonical_smi
-    except:
+        mol = Chem.MolFromSmiles(smi)
+        if mol is None:
+            return None
+        return Chem.MolToSmiles(mol, canonical=True)
+    except Exception:
         return None
 
 
@@ -462,7 +457,7 @@ def concat_fingerprints_df(
             logger=logger,
         )
         fp_rows.append(fp)
-    df[f"concat_fp"] = fp_rows
+    df["concat_fp"] = fp_rows
     # np.stack(fp_rows)
     return df
 
