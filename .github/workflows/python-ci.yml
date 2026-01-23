@@ -42,12 +42,12 @@ jobs:
           find . -name "coverage.xml"
 
       - name: Upload coverage to Codecov
+        if: github.event_name != 'push'
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
+          slug: lihua-notes/stpy
           fail_ci_if_error: true
 
   lint:
