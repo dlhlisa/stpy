@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 from rdkit import Chem
-from utils import (
+from stpy.utils import (
     FingerprintTransformer,
     MoleculeStandardizer,
     cas2smiles,

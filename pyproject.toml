@@ -19,7 +19,7 @@ dependencies = [
     "scikit-learn",
 ]
 [tool.setuptools.packages.find]
-where = ["stpy"]
+where = ["."]
 
 [project.optional-dependencies]
 dev = [
