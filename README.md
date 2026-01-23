@@ -1,6 +1,6 @@
 # Small Tricks / Reusable Scripts
 
-![CI](https://github.com/lihua-notes/stpy/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/dlhlisa/stpy/actions/workflows/ci.yml/badge.svg)
 
 
 Include general rules, tips, tricks, tools and others for my daily use.
