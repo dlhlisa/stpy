@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stpy"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Python package for data science and cheminformatics utilities."
 authors = [{name="Lihua Deng", email="lihuad09@qq.com"}]
 readme = "README.md"
