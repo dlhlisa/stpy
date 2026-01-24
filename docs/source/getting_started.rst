@@ -30,7 +30,7 @@ This code imports the `canonicalize_smiles` function from the `stpy.utils` modul
 Documentation
 -------------
 For more detailed information on the various modules and functions available in `stpy`, please refer to the full documentation. You can find it at:  
-`stpy Documentation <https://your-documentation-link-here>`_
+`stpy Documentation <https://stpy-master.readthedocs.io/en/latest/>`_
  
 Here, you will find comprehensive guides, API references, and examples to help you make the most of `stpy`.
 
