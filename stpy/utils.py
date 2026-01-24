@@ -64,9 +64,8 @@ class MoleculeStandardizer:
 
     Parameters
     ----------
-    steps : list of str, optional
-        Ordered list of standardization steps to apply.
-        Supported steps:
+    steps : list of str, optional. Ordered list of standardization steps to apply.
+    Supported steps:
             - "normalize"
             - "remove_fragments"
             - "reionize"
@@ -76,15 +75,12 @@ class MoleculeStandardizer:
             - "charge_parent"
             - "super_parent"
             - "cleanup"
-    largest_fragment : bool, optional
-        Keep only the largest fragment after processing.
-    numThreads : int, optional
-        Number of threads for RDKit operations.
-    logger : logging.Logger, optional
-        Logger for reporting actions.
+    largest_fragment : bool, optional. Keep only the largest fragment after processing.
+    numThreads : int, optional. Number of threads for RDKit operations.
+    logger : logging.Logger, optional. Logger for reporting actions.
 
     Notes
-    -----
+    ---------
     This class is designed for batch processing and reproducible pipelines.
     """
 
