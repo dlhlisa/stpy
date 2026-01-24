@@ -7,15 +7,22 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   stpy.codes
+   stpy.utils
+   stpy.summarize_gScholarAlerts
 
 Submodules
 ----------
 
-stpy.config module
+stpy.utils module
 ------------------
-
-.. automodule:: stpy.config
+.. automodule:: stpy.utils
+   :members:
+   :show-inheritance:
+   :undoc-members:
+   
+stpy.summarize_gScholarAlerts module
+------------------
+.. automodule:: stpy.summarize_gScholarAlerts
    :members:
    :show-inheritance:
    :undoc-members:

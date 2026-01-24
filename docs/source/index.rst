@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-stpy documentation
+Welcome to stpy's documentation
 ==================
 
 Add your content using ``reStructuredText`` syntax. See the
@@ -15,3 +15,5 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
+   getting_started
+   stpy
