@@ -298,7 +298,7 @@ def get_fingerprints_df(
     dtype="uint8",
 ):
     """
-    Compute fingerprints for all SMILES in a DataFrame. 
+    Compute fingerprints for all SMILES in a DataFrame.
     Returns a new column '{fp}_fp' with fingerprint arrays.
     Parameters
     ----------
@@ -313,7 +313,7 @@ def get_fingerprints_df(
     fpSize : int
         Bit vector size for fingerprints that support it.
     dtype : str
-        Output dtype: 'bool', 'uint8', 'int8'.      
+        Output dtype: 'bool', 'uint8', 'int8'.
     Returns
     -------
     pd.DataFrame
@@ -542,14 +542,14 @@ def fp_manipulate(df, fp1, fp2, mani="concat"):
 
 
 def cas2smiles(cas_number="50-78-2"):
-    """ 
-    
-    Convert CAS number to SMILES using PubChem PUG-REST API.    
+    """
+
+    Convert CAS number to SMILES using PubChem PUG-REST API.
     Parameters
     ----------
     cas_number : str
-        CAS registry number.    
-    Returns 
+        CAS registry number.
+    Returns
     -------
     str
         SMILES string or "NotFound" if not found.

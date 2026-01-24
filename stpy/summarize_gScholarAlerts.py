@@ -118,7 +118,7 @@ def parse_email(mail, email_id):
 
 
 def extract_publication_details(html_content):
-    """ Extract publication details from the HTML content of the email.
+    """Extract publication details from the HTML content of the email.
 
     Args:
         html_content (str): The HTML content of the email.
@@ -147,7 +147,7 @@ def extract_publication_details(html_content):
 
 def get_more_info(publications):
     """
-    Get more information from DOI and URL.      
+    Get more information from DOI and URL.
 
     Args:
         publications (list): A list of dictionaries containing publication details.
@@ -349,7 +349,7 @@ def extract_publication_info(url):
 
 def summarize_publications(username, password, since_days):
     """
-    Summarize publications from Google Scholar Alerts and save to CSV file. 
+    Summarize publications from Google Scholar Alerts and save to CSV file.
 
     Args:
         username (str): The Gmail username (email address).
