@@ -1,4 +1,4 @@
-API documentation for the stpy package
+API documentation
 ======================================
 
 .. autosummary::
