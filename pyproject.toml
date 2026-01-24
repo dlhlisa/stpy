@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stpy"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python package for data science and cheminformatics utilities."
 authors = [{name="Lihua Deng", email="lihuad09@qq.com"}]
 readme = "README.md"
@@ -18,8 +18,9 @@ dependencies = [
     "rdkit",
     "scikit-learn",
 ]
-[tool.setuptools.packages.find]
-where = ["."]
+
+[tool.setuptools]
+packages = ["stpy"]
 
 [project.optional-dependencies]
 dev = [
