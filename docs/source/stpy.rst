@@ -19,7 +19,7 @@ stpy.utils module
    :members:
    :show-inheritance:
    :undoc-members:
-   
+
 stpy.summarize_gScholarAlerts module
 ------------------
 .. automodule:: stpy.summarize_gScholarAlerts

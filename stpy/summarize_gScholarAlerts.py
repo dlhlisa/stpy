@@ -42,6 +42,18 @@ logging.basicConfig(
 
 
 def fetch_unread_emails(username, password, since_days, label="gScholarAlerts"):
+    """
+    Fetch_unread_emails from Gmail with specific label and since certain days
+
+    Args:
+        username (str): The Gmail username (email address).
+        password (str): The Gmail password (or app password if 2FA is enabled).
+        since_days (date): The number of days to look back for emails.
+        label (str, optional): the label to fetch emails from, that you have set in your Gmail account. Defaults to "gScholarAlerts".
+
+    Returns:
+        mail, email_ids (set): Fetched mail object and email IDs.
+    """
     # label:gscholaralerts
     try:
         # Connect to Gmail IMAP server
@@ -81,6 +93,16 @@ def fetch_unread_emails(username, password, since_days, label="gScholarAlerts"):
 
 
 def parse_email(mail, email_id):
+    """
+    Parse fetched emails.
+
+    Args:
+        mail (object): Fetched mail object.
+        email_id (object): Fetched email ID.
+
+    Returns:
+        str: parsed email content.
+    """
     try:
         status, msg_data = mail.fetch(email_id, "(RFC822)")
         msg = email.message_from_bytes(msg_data[0][1])
@@ -96,6 +118,14 @@ def parse_email(mail, email_id):
 
 
 def extract_publication_details(html_content):
+    """ Extract publication details from the HTML content of the email.
+
+    Args:
+        html_content (str): The HTML content of the email.
+
+    Returns:
+        list: A list of dictionaries containing publication details.
+    """
     try:
         soup = BeautifulSoup(html_content, "html.parser")
         publications = [
@@ -116,6 +146,15 @@ def extract_publication_details(html_content):
 
 
 def get_more_info(publications):
+    """
+    Get more information from DOI and URL.      
+
+    Args:
+        publications (list): A list of dictionaries containing publication details.
+
+    Returns:
+        pd.DataFrame: A DataFrame with additional information from DOI and URL.
+    """
     # Retrieve other information from DOI
     publications_df = pd.DataFrame(publications)
     # drop duplicates
@@ -147,7 +186,12 @@ def get_more_info(publications):
 
 def get_publication_details(doi):
     """
+
     Retrieve publication details including abstract using DOI from the CrossRef API.
+    Args:
+        doi (str): The DOI of the publication.
+    Returns:
+        dict: A dictionary containing publication details.
     """
     base_url = "https://api.crossref.org/works/"
     full_url = f"{base_url}{doi}"
@@ -195,6 +239,10 @@ def get_publication_details(doi):
 def is_pdf_url(url):
     """
     Check if the URL points to a PDF file by examining headers.
+    Args:
+        url (str): The URL to check.
+    Returns:
+        bool: True if the URL points to a PDF, False otherwise.
     """
     response = requests.head(url, allow_redirects=True)
     return response.headers.get("Content-Type") == "application/pdf"
@@ -203,6 +251,10 @@ def is_pdf_url(url):
 def extract_text_from_pdf(pdf_url):
     """
     Download a PDF from a URL and extract its text without saving it locally.
+    Args:
+        pdf_url (str): The URL of the PDF file.
+    Returns:
+        str: Extracted text from the PDF.
     """
     response = requests.get(pdf_url)
     if response.status_code == 200:
@@ -222,6 +274,10 @@ def extract_text_from_pdf(pdf_url):
 def extract_text_from_webpage(web_url):
     """
     Extract text from an HTML webpage.
+    Args:
+        web_url (str): The URL of the webpage.
+    Returns:
+        dict: A dictionary containing the abstract text.
     """
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(web_url, headers=headers)
@@ -251,6 +307,10 @@ def extract_text_from_webpage(web_url):
 def extract_publication_info(url):
     """
     Extract publication details based on whether the URL is a PDF or a web page.
+    Args:
+        url (str): The URL of the publication.
+    Returns:
+        dict: A dictionary containing publication details.
     """
     if is_pdf_url(url):
         text = extract_text_from_pdf(url)
@@ -288,6 +348,16 @@ def extract_publication_info(url):
 
 
 def summarize_publications(username, password, since_days):
+    """
+    Summarize publications from Google Scholar Alerts and save to CSV file. 
+
+    Args:
+        username (str): The Gmail username (email address).
+        password (str): The Gmail password (or app password if 2FA is enabled).
+        since_days (date): The number of days to look back for emails.
+    Returns:
+        None
+    """
     mail, email_ids = fetch_unread_emails(username, password, since_days)
     since_date = (datetime.today() - timedelta(days=since_days)).strftime("%d-%b-%Y")
     if not mail:

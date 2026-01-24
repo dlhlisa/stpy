@@ -301,6 +301,28 @@ def get_fingerprints_df(
     fpSize=2048,
     dtype="uint8",
 ):
+    """
+    Compute fingerprints for all SMILES in a DataFrame. 
+    Returns a new column '{fp}_fp' with fingerprint arrays.
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Input dataframe.
+    smiles_col : str
+        Column name containing SMILES strings.
+    fp : str
+        Fingerprint type.
+    radius : int
+        Morgan radius (used where applicable).
+    fpSize : int
+        Bit vector size for fingerprints that support it.
+    dtype : str
+        Output dtype: 'bool', 'uint8', 'int8'.      
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with new column '{fp}_fp'.
+    """
     fps = [
         get_fingerprint(
             smi,
@@ -524,7 +546,18 @@ def fp_manipulate(df, fp1, fp2, mani="concat"):
 
 
 def cas2smiles(cas_number="50-78-2"):
-    """ """
+    """ 
+    
+    Convert CAS number to SMILES using PubChem PUG-REST API.    
+    Parameters
+    ----------
+    cas_number : str
+        CAS registry number.    
+    Returns 
+    -------
+    str
+        SMILES string or "NotFound" if not found.
+    """
     # PubChem PUG-REST API endpoint
     api_url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{cas_number}/property/CanonicalSMILES/JSON"
 
