@@ -30,13 +30,13 @@ This code imports the `canonicalize_smiles` function from the `stpy.utils` modul
 Documentation
 -------------
 For more detailed information on the various modules and functions available in `stpy`, please refer to the full documentation. You can find it at:  
-`stpy Documentation <https://your-documentation-link-here>`
+`stpy Documentation <https://your-documentation-link-here>`_
  
 Here, you will find comprehensive guides, API references, and examples to help you make the most of `stpy`.
 
 Support
 -------
 If you encounter any issues or have questions about using `stpy`, feel free to reach out via the GitHub repository:  
-`stpy GitHub Repository <https://github.com/lihua-notes/stpy.github>` or open an issue for assistance.    
+`stpy GitHub Repository <https://github.com/lihua-notes/stpy.github>`_ or open an issue for assistance.    
 
 We hope you find `stpy` useful for your projects! Happy coding!
