@@ -37,6 +37,6 @@ Here, you will find comprehensive guides, API references, and examples to help y
 Support
 -------
 If you encounter any issues or have questions about using `stpy`, feel free to reach out via the GitHub repository:  
-`stpy GitHub Repository <https://github.com/lihua-notes/stpy.github>`_ or open an issue for assistance.    
+`stpy GitHub Repository <https://github.com/lihua-notes/stpy.git>`_ or open an issue for assistance.    
 
 We hope you find `stpy` useful for your projects! Happy coding!
